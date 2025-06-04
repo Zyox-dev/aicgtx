@@ -1,125 +1,112 @@
-/* body {
+body {
   margin: 0;
-  background-color: #0f1117;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
+  padding: 0;
+  font-family: 'JetBrains Mono', monospace;
+  background: #0d1117;
+  color: #e6edf3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.container {
+.app-container {
+  width: 100%;
   max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #161b22;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  overflow: hidden;
 }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 0.2rem;
+header {
+  padding: 20px;
+  background: #1f2937;
+  text-align: center;
+  border-bottom: 1px solid #30363d;
 }
 
-.subtitle {
-  color: #999;
-  margin-bottom: 2rem;
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.tagline {
+  font-size: 0.9rem;
+  color: #8b949e;
+  margin-top: 4px;
 }
 
 .chat-box {
-  background-color: #1c1e26;
-  padding: 1rem;
-  border-radius: 12px;
-  height: 60vh;
+  flex: 1;
+  padding: 20px;
   overflow-y: auto;
-  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 12px;
+  scroll-behavior: smooth;
 }
 
 .chat-message {
   display: flex;
-  gap: 0.5rem;
   align-items: flex-start;
+  gap: 12px;
 }
 
 .chat-message.user .text {
-  background-color: #2c2f3a;
-  align-self: flex-end;
+  background-color: #238636;
 }
 
 .chat-message.bot .text {
-  background-color: #333842;
+  background-color: #30363d;
 }
 
 .avatar {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  width: 2rem;
 }
 
 .text {
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
   max-width: 80%;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 
 .input-container {
   display: flex;
-  background-color: #2c2f3a;
-  border-radius: 25px;
-  padding: 0.5rem;
+  border-top: 1px solid #30363d;
+  padding: 10px 16px;
+  background: #1f2937;
 }
 
-.input-container input {
-  flex-grow: 1;
+#user-input {
+  flex: 1;
+  padding: 10px 14px;
   border: none;
-  background: transparent;
-  color: white;
+  border-radius: 6px;
+  background-color: #0d1117;
+  color: #e6edf3;
   font-size: 1rem;
-  padding: 0.5rem;
+  outline: none;
 }
 
 .input-container button {
-  background: transparent;
+  margin-left: 10px;
+  padding: 10px 14px;
+  font-size: 1.1rem;
+  color: white;
+  background: #238636;
   border: none;
-  color: #aaa;
-  font-size: 1.2rem;
+  border-radius: 6px;
   cursor: pointer;
-}
- */
-
-function sendMessage() {
-  const input = document.getElementById("user-input");
-  const message = input.value.trim();
-  if (!message) return;
-
-  addMessage("user", message);
-  input.value = "";
-
-  setTimeout(() => {
-    addMessage("bot", getBotReply(message));
-  }, 600); // Simulated delay
+  transition: 0.2s ease;
 }
 
-function addMessage(sender, text) {
-  const chatBox = document.getElementById("chat-box");
-
-  const messageDiv = document.createElement("div");
-  messageDiv.className = `chat-message ${sender}`;
-
-  const avatar = document.createElement("div");
-  avatar.className = "avatar";
-  avatar.textContent = sender === "user" ? "🧑" : "🤖";
-
-  const textDiv = document.createElement("div");
-  textDiv.className = "text";
-  textDiv.textContent = text;
-
-  messageDiv.appendChild(avatar);
-  messageDiv.appendChild(textDiv);
-  chatBox.appendChild(messageDiv);
-
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function getBotReply(userText) {
-  const lower = userText.toLowerCase();
-  if (lower.includes("hello") || lower.includes("hi")) return "Hey there! 👋";
-  if (lower.includes("joke")) return "Why don't programmers like nature? It has too many bugs. 😆";
-  return "I'm still learning. But that sounds interesting!";
+.input-container button:hover {
+  background: #2ea043;
 }
