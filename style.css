@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   background-color: #0f1117;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -80,4 +80,46 @@ h1 {
   color: #aaa;
   font-size: 1.2rem;
   cursor: pointer;
+}
+ */
+
+function sendMessage() {
+  const input = document.getElementById("user-input");
+  const message = input.value.trim();
+  if (!message) return;
+
+  addMessage("user", message);
+  input.value = "";
+
+  setTimeout(() => {
+    addMessage("bot", getBotReply(message));
+  }, 600); // Simulated delay
+}
+
+function addMessage(sender, text) {
+  const chatBox = document.getElementById("chat-box");
+
+  const messageDiv = document.createElement("div");
+  messageDiv.className = `chat-message ${sender}`;
+
+  const avatar = document.createElement("div");
+  avatar.className = "avatar";
+  avatar.textContent = sender === "user" ? "🧑" : "🤖";
+
+  const textDiv = document.createElement("div");
+  textDiv.className = "text";
+  textDiv.textContent = text;
+
+  messageDiv.appendChild(avatar);
+  messageDiv.appendChild(textDiv);
+  chatBox.appendChild(messageDiv);
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getBotReply(userText) {
+  const lower = userText.toLowerCase();
+  if (lower.includes("hello") || lower.includes("hi")) return "Hey there! 👋";
+  if (lower.includes("joke")) return "Why don't programmers like nature? It has too many bugs. 😆";
+  return "I'm still learning. But that sounds interesting!";
 }
