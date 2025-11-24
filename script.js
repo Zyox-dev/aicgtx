@@ -1,4 +1,4 @@
-const API_KEY = "AIzaSyBTo9FBL2oWDSBjRPH1Kohvi7cCoKW296I"; // Replace with your real key
+const API_KEY = "AIzaSyBg_dUWO0WmMJUVmV3U1K-Mh3nsx9EWvD4"; // Replace with your real key
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 const systemPrompt = `You are Arnav Purohit — a 19-year-old CS, DS, and AI undergrad. 
